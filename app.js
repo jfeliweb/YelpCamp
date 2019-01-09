@@ -12,20 +12,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 
-// Campground.create(
-//     {
-//         name: "River Pines", 
-//         image: "https://farm3.staticflickr.com/2238/1514148183_092606ba94.jpg",
-//         description: "There's a large lazy river filled with pine needles. A bathroom every 5 miles, sand vollyball fields and great open space. No boats allowed!"
-        
-//     }, function(err, campground){
-//         if(err){
-//             console.log("SOMETHING BROKE BOSS!!");
-//         } else {
-//             console.log("I just created " + campground.name + " in a new DB.");
-//             console.log(campground);
-//         }
-//     })
 
 
 
@@ -72,10 +58,11 @@ app.get("/campgrounds/new", function(req, res) {
 //SHOW - show the campgrounds details
 app.get("/campgrounds/:id", function(req, res) {
     // Find the campground matching id
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err){
             console.log(err);
         } else {
+            console.log(foundCampground);
             // Display show template with that campground
             res.render("show", {campground: foundCampground});
         }
