@@ -1,6 +1,6 @@
-#YelpCamp
+## YelpCamp
 
-## Future Features
+### Future Features
 
 * CSS3 background animation on landing page 
 * Fuzzy Search 
@@ -20,7 +20,7 @@
 * Comments on the campground show page
 * Pagination in campgrounds index
 
-## Resources
+### Resources
 *  Google Maps location - https://www.youtube.com/watch?v=B4OuCjQLJ9k
 *  Admin role (user roles) - https://www.youtube.com/watch?v=somc45pnM2k
 *  User profile - https://youtu.be/6ar77jZ_ajc
