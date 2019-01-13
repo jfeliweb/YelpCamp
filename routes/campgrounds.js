@@ -62,6 +62,9 @@ router.get("/:id", function(req, res) {
 //EDIT - edit the campgrounds details in form
 router.get("/:id/edit", middleware.checkCampgroundOnwership, function(req, res) {
     Campground.findById(req.params.id, function(err, foundCampground){
+        if(err){
+            req.flash("error", "Campground not found!");
+        }
         res.render("campgrounds/edit", {campground: foundCampground});
     });
 });
@@ -76,13 +79,14 @@ router.put("/:id", middleware.checkCampgroundOnwership, function(req, res){
         }
     });
 });
-//DELETE - Remove campground from app
+//DESTROY - Remove campground from app
 router.delete("/:id", middleware.checkCampgroundOnwership, function(req, res){
     Campground.findByIdAndRemove(req.params.id, function(err){
         if(err){
             console.log(err);
             res.redirect("/campgrounds");
         } else {
+            req.flash("success", "Campground deleted.");
             res.redirect("/campgrounds");
         }
     });
